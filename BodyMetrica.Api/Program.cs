@@ -6,6 +6,8 @@ using BodyMetrica.Domain.Weight;
 using BodyMetrica.Domain.Weight.Repositories;
 using BodyMetrica.Infrastructure.DataAccess;
 using BodyMetrica.Infrastructure.DataAccess.Weight;
+using FluentMigrator.Runner;
+using BodyMetrica.Infrastructure.DataAccess.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,8 +47,7 @@ builder.Services.AddCors(x =>
     }));
 
 
-var connectionString = builder.Configuration.GetConnectionString("SQLAZURECONNSTR_BodyMetrica");
-connectionString = Environment.GetEnvironmentVariable("SQLAZURECONNSTR_BodyMetrica");
+var connectionString = Environment.GetEnvironmentVariable("SQLAZURECONNSTR_BodyMetrica");
 builder.Services.AddSqlServer<BodyMetricaDbContext>(connectionString);
 
 builder.Services.AddTransient<IWeightRepository, WeightRepository>();
@@ -55,6 +56,13 @@ builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssemblyContaining<AddWeightCommand>();
 });
+
+builder.Services.AddFluentMigratorCore()
+    .ConfigureRunner(rb => rb
+        .AddSqlServer()
+        .WithGlobalConnectionString(connectionString)
+        .ScanIn(typeof(Initialize).Assembly).For.Migrations()
+    );
 
 var app = builder.Build();
 
@@ -74,4 +82,18 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.Migrate();
+
 app.Run();
+
+
+public static class MigrationExtension
+{
+    public static IApplicationBuilder Migrate(this IApplicationBuilder app)
+    {
+        using var scope = app.ApplicationServices.CreateScope();
+        var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
+        runner.MigrateUp();
+        return app;
+    }
+}
