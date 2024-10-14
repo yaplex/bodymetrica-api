@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using BodyMetrica.Api.Models.Weight;
 using BodyMetrica.Domain.Weight;
+using BodyMetrica.Infrastructure.DataAccess.Weight;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,20 +26,12 @@ namespace BodyMetrica.Api.Controllers
             return Ok();
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public object Get()
+        [HttpGet]
+        public async Task<IEnumerable<Weight>> Get()
         {
-            var user = HttpContext.User.Identity as ClaimsIdentity;
-            var claims = user.Claims.GroupBy(x => x.Type).ToDictionary(x => x.Key, x => x.First().Value);
-
-            var apiData=  Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-            })
-            .ToArray();
-
-            return new {ApiData = apiData, Claims = claims};
+            var query = new GetWeightsQuery();
+            IEnumerable<Weight> result = await mediator.Send(query);
+            return result;
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using BodyMetrica.Domain.Weight.Repositories;
+﻿using BodyMetrica.Domain.Weight;
+using BodyMetrica.Domain.Weight.Repositories;
 using FluentResults;
+using Microsoft.EntityFrameworkCore;
 
 namespace BodyMetrica.Infrastructure.DataAccess.Weight;
 
@@ -13,5 +15,11 @@ public class WeightRepository(BodyMetricaDbContext dbContext): IWeightRepository
         await dbContext.SaveChangesAsync();
 
         return Result.Ok();
+    }
+
+    public async Task<IEnumerable<Domain.Weight.Weight>> GetWeights()
+    {
+        var weights  = await dbContext.Weights.Select(w => new Domain.Weight.Weight(w.WeightInKg)).ToListAsync();
+        return weights;
     }
 }
