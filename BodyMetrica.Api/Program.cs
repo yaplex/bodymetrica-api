@@ -2,6 +2,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using System.IdentityModel.Tokens.Jwt;
+using BodyMetrica.Domain.Weight;
+using BodyMetrica.Domain.Weight.Repositories;
+using BodyMetrica.Infrastructure.DataAccess;
+using BodyMetrica.Infrastructure.DataAccess.Weight;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +43,18 @@ builder.Services.AddCors(x =>
         p.AllowAnyOrigin();
         p.AllowAnyMethod();
     }));
+
+
+var connectionString = builder.Configuration.GetConnectionString("SQLAZURECONNSTR_BodyMetrica");
+connectionString = Environment.GetEnvironmentVariable("SQLAZURECONNSTR_BodyMetrica");
+builder.Services.AddSqlServer<BodyMetricaDbContext>(connectionString);
+
+builder.Services.AddTransient<IWeightRepository, WeightRepository>();
+
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssemblyContaining<AddWeightCommand>();
+});
 
 var app = builder.Build();
 

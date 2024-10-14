@@ -1,22 +1,28 @@
 using System.Security.Claims;
+using BodyMetrica.Api.Models.Weight;
+using BodyMetrica.Domain.Weight;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BodyMetrica.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class WeightController(IMediator mediator, ILogger<WeightController> logger) : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly ILogger<WeightController> _logger = logger;
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] AddWeightRequest request)
         {
-            _logger = logger;
+            var cmd = new AddWeightCommand(request.Weight, request.Units, request.Date);
+            var result = await mediator.Send(cmd);
+            if (result.IsFailed)
+            {
+                return BadRequest(result.Errors);
+            }
+
+            return Ok();
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -29,7 +35,6 @@ namespace BodyMetrica.Api.Controllers
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
                 TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
 
