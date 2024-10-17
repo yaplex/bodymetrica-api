@@ -1,8 +1,6 @@
 ﻿using System.Security;
-using System.Security.Claims;
 using BodyMetrica.Domain.Common.Models;
 using BodyMetrica.Domain.Common.Repositories;
-using BodyMetrica.Domain.Weight;
 using BodyMetrica.Domain.Weight.Services;
 using Microsoft.AspNetCore.Http;
 
@@ -22,11 +20,12 @@ public class UserService(IUserRepository userRepo, IHttpContextAccessor contextA
         var user = contextAccessor.HttpContext?.User;
         if (user is { Identity.IsAuthenticated: true })
         {
-            var sub = user.FindFirstValue("sub")!;
-            return new Auth0LoginInfo
-            {
-                ExternalIdentifer = sub
-            };
+            var sub = user.FindFirst("sub")?.Value;
+            if (sub != null)
+                return new Auth0LoginInfo
+                {
+                    ExternalIdentifer = sub
+                };
         }
 
         throw new SecurityException("Unauthenticated user");
