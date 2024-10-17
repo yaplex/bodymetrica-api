@@ -1,18 +1,17 @@
-﻿using BodyMetrica.Domain.Weight.Repositories;
+﻿using BodyMetrica.Domain.Weight.Persistence;
+using BodyMetrica.Domain.Weight.Repositories;
+using BodyMetrica.Domain.Weight.Requests;
 using MediatR;
 
 namespace BodyMetrica.Domain.Weight;
 
-public class GetWeightsQuery : IRequest<IEnumerable<Weight>>
+public class GetWeightsQueryHandler(
+    IWeightLogRepository weightLogRepository
+) : IRequestHandler<GetWeightLogsQuery, IEnumerable<WeightLogRecord>>
 {
-
-}
-
-public class GetWeightsQueryHandler(IWeightRepository weightRepository ): IRequestHandler<GetWeightsQuery, IEnumerable<Weight>>
-{
-    public Task<IEnumerable<Weight>> Handle(GetWeightsQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<WeightLogRecord>> Handle(GetWeightLogsQuery request,
+        CancellationToken cancellationToken)
     {
-        var weights = weightRepository.GetWeights();
-        return weights;
+        return await weightLogRepository.GetWeights(request.UserId);
     }
 }

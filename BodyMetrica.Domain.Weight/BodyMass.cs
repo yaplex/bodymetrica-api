@@ -1,6 +1,6 @@
-﻿namespace BodyMetrica.Infrastructure.DataAccess.Weight;
+﻿namespace BodyMetrica.Domain.Weight;
 
-public class WeightRecord
+public class BodyMass
 {
     public int Id { get; set; }
     public decimal WeightInKg { get; set; }
