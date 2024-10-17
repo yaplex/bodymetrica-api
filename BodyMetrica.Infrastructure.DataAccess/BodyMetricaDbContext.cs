@@ -1,4 +1,5 @@
-﻿using BodyMetrica.Infrastructure.DataAccess.Weight;
+﻿using BodyMetrica.Domain.Common.Models;
+using BodyMetrica.Domain.Weight.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace BodyMetrica.Infrastructure.DataAccess;
@@ -10,17 +11,28 @@ public class BodyMetricaDbContext : DbContext
     {
     }
 
-    public DbSet<WeightRecord> Weights { get; set; }
+    public DbSet<WeightLogRecord> WeightLogs { get; set; }
+    public DbSet<UserProfile> ApplicationUsers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<WeightRecord>(
-            dob =>
+        modelBuilder.Entity<WeightLogRecord>(
+            entity =>
             {
-                dob.ToTable("WeightRecords");
-                dob.HasKey(x => x.Id);
-                dob.Property(o => o.WeightInKg).HasColumnName("WeightInKg");
-                dob.Property(o => o.RecordDate).HasColumnName("RecordDate");
+                entity.ToTable("WeightLogs");
+                entity.HasKey(x => x.Id);
+                entity.Property(o => o.UserId).HasColumnName("UserId");
+                entity.Property(o => o.WeightInKg).HasColumnName("WeightInKg");
+                entity.Property(o => o.RecordDate).HasColumnName("RecordDate");
+            });
+        modelBuilder.Entity<UserProfile>(
+            entity =>
+            {
+                entity.ToTable("ApplicationUsers");
+                entity.HasKey(x => x.Id);
+                entity.Property(o => o.ExternalId).HasColumnName("ExternalId");
+                entity.Property(o => o.WeightUnits).HasColumnName("WeightUnits");
+                entity.Property(o => o.CreatedAt).HasColumnName("CreatedAt");
             });
     }
 }
