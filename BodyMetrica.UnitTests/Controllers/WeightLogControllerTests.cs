@@ -2,6 +2,7 @@
 using BodyMetrica.Api.Models.Weight;
 using BodyMetrica.Domain.Weight;
 using BodyMetrica.Domain.Weight.Requests;
+using BodyMetrica.Domain.Weight.Services;
 using FluentResults;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,8 @@ public class WeightLogControllerTests
     {
         var mediator = new Mock<IMediator>();
         mediator.Setup(x => x.Send(It.IsAny<AddNewLogWeightRequest>(), default)).ReturnsAsync(Result.Ok());
-        var ctrl = new WeightLogController(mediator.Object);
+        var userService = new Mock<IUserService>();
+        var ctrl = new WeightLogController(mediator.Object, userService.Object);
         var result = await ctrl.Post(new LogWeightRequest { Weight = 70.234m, RecordDate = DateTimeOffset.Now });
         Assert.IsType<OkResult>(result);
     }

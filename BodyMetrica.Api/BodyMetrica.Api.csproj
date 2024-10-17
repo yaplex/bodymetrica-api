@@ -10,7 +10,7 @@
     <PackageReference Include="Autofac" Version="8.1.1" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
     <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="Azure.Identity" Version="1.12.1" />
+    <PackageReference Include="Azure.Identity" Version="1.13.0" />
     <PackageReference Include="FluentMigrator" Version="6.2.0" />
     <PackageReference Include="FluentMigrator.Extensions.SqlServer" Version="6.2.0" />
     <PackageReference Include="FluentMigrator.Runner" Version="6.2.0" />
@@ -29,7 +29,7 @@
     <PackageReference Include="Serilog.Extensions.Logging" Version="8.0.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
     <PackageReference Include="System.Formats.Asn1" Version="8.0.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.1.2" />
   </ItemGroup>
