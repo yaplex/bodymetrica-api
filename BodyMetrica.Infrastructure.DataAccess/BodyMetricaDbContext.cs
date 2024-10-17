@@ -1,6 +1,7 @@
 ﻿using BodyMetrica.Domain.Common.Models;
 using BodyMetrica.Domain.Weight.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BodyMetrica.Infrastructure.DataAccess;
 
@@ -31,7 +32,8 @@ public class BodyMetricaDbContext : DbContext
                 entity.ToTable("ApplicationUsers");
                 entity.HasKey(x => x.Id);
                 entity.Property(o => o.ExternalId).HasColumnName("ExternalId");
-                entity.Property(o => o.WeightUnits).HasColumnName("WeightUnits");
+                entity.Property(o => o.WeightUnits).HasColumnName("WeightUnits")
+                    .HasConversion(new EnumToStringConverter<WeightUnits>());
                 entity.Property(o => o.CreatedAt).HasColumnName("CreatedAt");
             });
     }

@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace BodyMetrica.Infrastructure;
 
-public class UserProfileService(IUserRepository userRepo, IHttpContextAccessor contextAccessor) : IUserProfileService
+public class UserService(IUserRepository userRepo, IHttpContextAccessor contextAccessor) : IUserService
 {
-    public UserProfile GetUserProfile()
+    public UserProfile GetCurrentUser()
     {
         var authInfo = GetAuthInfo();
         var user = userRepo.FindByExternalId(authInfo.ExternalIdentifer);

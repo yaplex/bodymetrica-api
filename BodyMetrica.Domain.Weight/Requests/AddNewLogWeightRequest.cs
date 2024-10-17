@@ -13,7 +13,7 @@ public class AddNewLogWeightRequest(decimal weight, DateTimeOffset recordDate) :
     {
         get
         {
-            if ("kg".Equals(userProfile.WeightUnits, StringComparison.OrdinalIgnoreCase))
+            if (userProfile.WeightUnits == WeightUnits.Kg)
                 return weight;
             throw new NotImplementedException();
         }

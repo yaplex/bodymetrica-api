@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using BodyMetrica.Domain.Weight.Persistence;
+﻿using BodyMetrica.Domain.Weight.Persistence;
 using BodyMetrica.Domain.Weight.Repositories;
-using BodyMetrica.Domain.Weight.Services;
 using FluentResults;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -21,20 +19,18 @@ public class WeightLogRepository(BodyMetricaDbContext dbContext, ILogger logger)
         }
         catch (Exception ex)
         {
-            var message = "Failed to add new WeightLog record.";
+            var message = "Failed to add new WeightDiary record.";
             logger.Error(ex, message);
             return Result.Fail(message);
         }
     }
 
-    Task<IEnumerable<WeightLogRecord>> IWeightLogRepository.GetWeights()
+    async Task<IEnumerable<WeightLogRecord>> IWeightLogRepository.GetWeights(int userId)
     {
-        // var logRecords = await dbContext.WeightLogs
-        //     .Where(x => x.UserId == user.UserId)
-        //     .OrderBy(x => x.RecordDate)
-        //     .Take(10)
-        //     .ToListAsync();
-        // return mapper.Map<IEnumerable<WeightLog>>(logRecords);
-        throw new NotImplementedException();
+        return await dbContext.WeightLogs
+            .Where(x => x.UserId == userId)
+            .OrderBy(x => x.RecordDate)
+            .Take(10)
+            .ToListAsync();
     }
 }

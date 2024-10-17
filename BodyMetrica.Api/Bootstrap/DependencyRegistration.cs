@@ -21,9 +21,18 @@ public static class DependencyRegistration
 {
     public static void RegisterDependencies(this WebApplicationBuilder builder)
     {
+        var assembliesToScan = new List<Assembly>
+        {
+            typeof(WeightLogController).Assembly,
+            typeof(BodyMetricaDbContext).Assembly,
+            typeof(IWeightLogRepository).Assembly,
+            typeof(ValueObject).Assembly
+        };
+
+
         LoggingDependencies(builder);
         DatabaseDependencies(builder);
-        RegisterAutofac(builder);
+        RegisterAutofac(builder, assembliesToScan);
 
         RequireAuthenticationForAllApiEndpoint(builder);
         ConfigureAuth0(builder);
@@ -32,6 +41,7 @@ public static class DependencyRegistration
         AddFluentValidation(builder);
 
         builder.Services.AddHttpContextAccessor();
+        builder.Services.AddAutoMapper(assembliesToScan);
 
     }
 
@@ -87,21 +97,13 @@ public static class DependencyRegistration
                 .Enrich.FromLogContext());
     }
 
-    private static void RegisterAutofac(WebApplicationBuilder builder)
+    private static void RegisterAutofac(WebApplicationBuilder builder, List<Assembly> assembliesToScan)
     {
-        var assembliesToScan = new List<Assembly>
-        {
-            typeof(WeightLogController).Assembly,
-            typeof(BodyMetricaDbContext).Assembly,
-            typeof(IWeightLogRepository).Assembly,
-            typeof(ValueObject).Assembly
-        };
 
         builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
         builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
         {
             containerBuilder.RegisterModule(new MediatorAutofacModule(assembliesToScan));
-            containerBuilder.RegisterModule(new AutoMapperModule(assembliesToScan));
             containerBuilder.RegisterModule(new ManualDependencyInjectionModule());
         });
     }

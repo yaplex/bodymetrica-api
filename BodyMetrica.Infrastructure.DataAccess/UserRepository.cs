@@ -15,7 +15,7 @@ public class UserRepository(BodyMetricaDbContext dbContext) : IUserRepository
             var defaultUser = new UserProfile()
             {
                 ExternalId = externalIdentifer,
-                WeightUnits = "Kg",
+                WeightUnits = WeightUnits.Kg,
                 CreatedAt = DateTimeOffset.Now
             };
             dbContext.ApplicationUsers.Add(defaultUser);

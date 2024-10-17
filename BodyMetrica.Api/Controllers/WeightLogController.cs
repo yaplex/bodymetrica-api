@@ -25,12 +25,11 @@ public class WeightLogController(IMediator mediator)
         return Ok();
     }
 
-    // [HttpGet]
-    // public async Task<IEnumerable<WeightLogDto>> Get()
-    // {
-    //     var query = new GetWeightLogsQuery();
-    //     var weightLog = await mediator.Send(query);
-    //
-    //     return mapper.Map<IEnumerable<WeightLogDto>>(weightLog);
-    // }
+    [HttpGet]
+    public async Task<IEnumerable<WeightLogDto>> Get()
+    {
+        var query = new GetWeightLogsQuery();
+        var weightLogs = await mediator.Send(query);
+        return weightLogs;
+    }
 }

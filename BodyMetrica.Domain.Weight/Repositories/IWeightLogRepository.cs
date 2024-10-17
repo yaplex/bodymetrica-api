@@ -6,5 +6,5 @@ namespace BodyMetrica.Domain.Weight.Repositories;
 public interface IWeightLogRepository
 {
     Task<Result> AddNew(WeightLogRecord weightLog);
-    Task<IEnumerable<WeightLogRecord>> GetWeights();
+    Task<IEnumerable<WeightLogRecord>> GetWeights(int userId);
 }

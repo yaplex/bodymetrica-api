@@ -20,7 +20,7 @@ public class ManualDependencyInjectionModule : Module
 
     private static void RegisterServices(ContainerBuilder builder)
     {
-        builder.RegisterType<UserProfileService>().As<IUserProfileService>();
+        builder.RegisterType<UserService>().As<IUserService>();
     }
 
     private static void RegisterRepositories(ContainerBuilder builder)

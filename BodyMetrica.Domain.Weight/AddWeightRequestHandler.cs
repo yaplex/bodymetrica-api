@@ -9,11 +9,11 @@ namespace BodyMetrica.Domain.Weight;
 
 public class AddWeightRequestHandler(
     IWeightLogRepository weightLogRepository,
-    IUserProfileService userProfile) : IRequestHandler<AddNewLogWeightRequest, Result>
+    IUserService user) : IRequestHandler<AddNewLogWeightRequest, Result>
 {
     public async Task<Result> Handle(AddNewLogWeightRequest request, CancellationToken cancellationToken)
     {
-        request.SetUserProfile(userProfile.GetUserProfile());
+        request.SetUserProfile(user.GetCurrentUser());
         
         var result = await weightLogRepository.AddNew(new WeightLogRecord
             { UserId = request.UserId, RecordDate = request.RecordDate, WeightInKg = request.WeightInKg });

@@ -2,7 +2,7 @@
 
 namespace BodyMetrica.Domain.Weight.Services;
 
-public interface IUserProfileService
+public interface IUserService
 {
-    UserProfile GetUserProfile();
+    UserProfile GetCurrentUser();
 }

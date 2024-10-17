@@ -18,9 +18,9 @@ public class AddNewLogWeightRequestTests
         var weightRepository = new Mock<IWeightLogRepository>();
         weightRepository.Setup(x => x.AddNew(It.IsAny<WeightLogRecord>()))
             .ReturnsAsync(Result.Ok());
-        var userProfile = new Mock<IUserProfileService>();
-        userProfile.Setup(x => x.GetUserProfile())
-            .Returns(new UserProfile { Id = 1, WeightUnits = "kg" });
+        var userProfile = new Mock<IUserService>();
+        userProfile.Setup(x => x.GetCurrentUser())
+            .Returns(new UserProfile { Id = 1, WeightUnits = WeightUnits.Kg });
         var cmdHandler = new AddWeightRequestHandler(weightRepository.Object, userProfile.Object);
         var result = await cmdHandler.Handle(cmd, CancellationToken.None);
 
