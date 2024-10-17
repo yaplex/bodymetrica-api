@@ -1,4 +1,4 @@
-﻿namespace BodyMetrica.Domain.Weight.Dtos;
+﻿namespace BodyMetrica.Api.Models.Weight;
 
 public class WeightLogDto
 {

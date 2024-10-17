@@ -1,8 +1,10 @@
 using AutoMapper;
 using BodyMetrica.Api.Models.Weight;
+using BodyMetrica.Domain.Common.Models;
 using BodyMetrica.Domain.Weight;
-using BodyMetrica.Domain.Weight.Dtos;
+using BodyMetrica.Domain.Weight.Persistence;
 using BodyMetrica.Domain.Weight.Requests;
+using BodyMetrica.Domain.Weight.Services;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +12,7 @@ namespace BodyMetrica.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WeightLogController(IMediator mediator)
+public class WeightLogController(IMediator mediator, IUserService userService)
     : ControllerBase
 {
 
@@ -28,8 +30,20 @@ public class WeightLogController(IMediator mediator)
     [HttpGet]
     public async Task<IEnumerable<WeightLogDto>> Get()
     {
-        var query = new GetWeightLogsQuery();
+        var user = userService.GetCurrentUser();
+        var query = new GetWeightLogsQuery(user.Id);
         var weightLogs = await mediator.Send(query);
-        return weightLogs;
+        var result = new List<WeightLogDto>();
+        foreach (var logRecord in weightLogs)
+        {
+            result.Add(new WeightLogDto()
+            {
+                Id = logRecord.Id, 
+                RecordDate = logRecord.RecordDate, 
+                Weight = WeightConverter.WeightInKgToWeight(logRecord.WeightInKg, user.WeightUnits)
+            });
+        }
+
+        return result;
     }
 }

@@ -19,7 +19,7 @@ public class WeightLogRepository(BodyMetricaDbContext dbContext, ILogger logger)
         }
         catch (Exception ex)
         {
-            var message = "Failed to add new WeightDiary record.";
+            var message = "Failed to add new WeightConverter record.";
             logger.Error(ex, message);
             return Result.Fail(message);
         }
