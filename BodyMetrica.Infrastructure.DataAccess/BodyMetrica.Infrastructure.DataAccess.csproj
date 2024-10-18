@@ -22,4 +22,9 @@
     <ProjectReference Include="..\BodyMetrica.Domain.Weight\BodyMetrica.Domain.Weight.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Weight\AutoMapping\" />
+    <Folder Include="Weight\Repositories\" />
+  </ItemGroup>
+
 </Project>

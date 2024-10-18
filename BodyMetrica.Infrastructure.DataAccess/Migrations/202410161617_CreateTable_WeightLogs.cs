@@ -8,9 +8,9 @@ public class CreateTable_WeightLogs : Migration
     public override void Up()
     {
         Create.Table("WeightLogs")
-            .WithColumn("Id").AsInt64().PrimaryKey().Identity()
-            .WithColumn("UserId").AsInt32()
-            .WithColumn("WeightInKg").AsDecimal().NotNullable()
+            .WithColumn("Id").AsInt32().PrimaryKey().Identity()
+            .WithColumn("OwnerId").AsInt32()
+            .WithColumn("WeightInKg").AsDecimal(10, 5).NotNullable()
             .WithColumn("RecordDate").AsDateTimeOffset().NotNullable();
     }
 

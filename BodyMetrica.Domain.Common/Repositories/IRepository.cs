@@ -2,7 +2,7 @@
 
 namespace BodyMetrica.Domain.Common.Repositories;
 
-public interface IUserRepository
+public interface IRepository<T> where T : IAggregateRoot
 {
-    User FindByExternalId(string externalIdentifer);
+
 }
