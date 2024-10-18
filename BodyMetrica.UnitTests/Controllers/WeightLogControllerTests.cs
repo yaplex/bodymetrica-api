@@ -1,8 +1,5 @@
 ﻿using BodyMetrica.Api.Controllers;
-using BodyMetrica.Api.Models.Weight;
-using BodyMetrica.Domain.Weight;
-using BodyMetrica.Domain.Weight.Requests;
-using BodyMetrica.Domain.Weight.Services;
+using BodyMetrica.Contracts.Weight.Requests;
 using FluentResults;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -16,10 +13,9 @@ public class WeightLogControllerTests
     public async Task Should_Add_New_Weight()
     {
         var mediator = new Mock<IMediator>();
-        mediator.Setup(x => x.Send(It.IsAny<AddNewLogWeightRequest>(), default)).ReturnsAsync(Result.Ok());
-        var userService = new Mock<IUserService>();
-        var ctrl = new WeightLogController(mediator.Object, userService.Object);
-        var result = await ctrl.Post(new LogWeightRequest { Weight = 70.234m, RecordDate = DateTimeOffset.Now });
+        mediator.Setup(x => x.Send(It.IsAny<AddNewWeightLogRequest>(), default)).ReturnsAsync(Result.Ok());
+        var ctrl = new WeightLogController(mediator.Object);
+        var result = await ctrl.Post(new AddNewWeightLogRequest { Weight = 70.234m, RecordDate = DateTimeOffset.Now });
         Assert.IsType<OkResult>(result);
     }
 }

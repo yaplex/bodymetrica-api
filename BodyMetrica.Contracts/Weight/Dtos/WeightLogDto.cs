@@ -1,8 +1,9 @@
-﻿namespace BodyMetrica.Api.Models.Weight;
+﻿namespace BodyMetrica.Contracts.Weight.Dtos;
 
 public class WeightLogDto
 {
-    public long Id { get; set; }
+    public int Id { get; set; }
     public decimal Weight { get; set; }
     public DateTimeOffset RecordDate { get; set; }
+
 }

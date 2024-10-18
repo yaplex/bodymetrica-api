@@ -2,8 +2,8 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using BodyMetrica.Api.Controllers;
-using BodyMetrica.Api.Models.Weight;
-using BodyMetrica.Domain.Common;
+using BodyMetrica.Contracts.Weight.Requests;
+using BodyMetrica.Domain.Common.Models;
 using BodyMetrica.Domain.Weight.Repositories;
 using BodyMetrica.Infrastructure.DataAccess;
 using BodyMetrica.Infrastructure.DataAccess.Migrations;
@@ -42,7 +42,6 @@ public static class DependencyRegistration
 
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddAutoMapper(assembliesToScan);
-
     }
 
     private static void AddCorsForEndpoints(WebApplicationBuilder builder)
@@ -86,7 +85,7 @@ public static class DependencyRegistration
     {
         builder.Services.AddFluentValidationAutoValidation();
         builder.Services.AddFluentValidationClientsideAdapters();
-        builder.Services.AddValidatorsFromAssemblyContaining(typeof(LogWeightRequestValidator));
+        builder.Services.AddValidatorsFromAssemblyContaining(typeof(AddNewLogWeightRequestValidator));
     }
 
     private static void LoggingDependencies(WebApplicationBuilder builder)
@@ -99,7 +98,6 @@ public static class DependencyRegistration
 
     private static void RegisterAutofac(WebApplicationBuilder builder, List<Assembly> assembliesToScan)
     {
-
         builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
         builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
         {
@@ -127,5 +125,4 @@ public static class DependencyRegistration
         runner.MigrateUp();
         return app;
     }
-
 }

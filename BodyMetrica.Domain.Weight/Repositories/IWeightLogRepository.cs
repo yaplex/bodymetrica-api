@@ -1,10 +1,11 @@
-﻿using BodyMetrica.Domain.Weight.Persistence;
+﻿using BodyMetrica.Domain.Common.Repositories;
+using BodyMetrica.Domain.Weight.Entities;
 using FluentResults;
 
 namespace BodyMetrica.Domain.Weight.Repositories;
 
-public interface IWeightLogRepository
+public interface IWeightLogRepository: IRepository<WeightLog>
 {
-    Task<Result> AddNew(WeightLogRecord weightLog);
-    Task<IEnumerable<WeightLogRecord>> GetWeights(int userId);
+    Task<Result> AddNew(WeightLog weightLog);
+    Task<IEnumerable<WeightLog>> GetWeightLogs(int ownerId, int recordsCount);
 }

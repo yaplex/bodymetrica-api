@@ -13,12 +13,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BodyMetrica.Contracts\BodyMetrica.Contracts.csproj" />
     <ProjectReference Include="..\BodyMetrica.Domain.Common\BodyMetrica.Domain.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\" />
-    <Folder Include="Requests\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Aggregates\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,9 @@
 ﻿using Autofac;
 using BodyMetrica.Domain.Common.Repositories;
+using BodyMetrica.Domain.Common.Services;
 using BodyMetrica.Domain.Weight.Repositories;
-using BodyMetrica.Domain.Weight.Services;
 using BodyMetrica.Infrastructure;
-using BodyMetrica.Infrastructure.DataAccess;
+using BodyMetrica.Infrastructure.DataAccess.Repositories;
 using BodyMetrica.Infrastructure.DataAccess.Weight;
 using Module = Autofac.Module;
 
