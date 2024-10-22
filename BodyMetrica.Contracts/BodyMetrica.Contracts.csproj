@@ -13,6 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Weight\Dtos\" />
+    <Folder Include="Weight\Requests\" />
     <Folder Include="Weight\Responses\" />
   </ItemGroup>
 

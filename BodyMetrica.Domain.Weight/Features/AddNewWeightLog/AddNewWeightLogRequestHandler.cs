@@ -5,7 +5,7 @@ using BodyMetrica.Domain.Weight.Repositories;
 using FluentResults;
 using MediatR;
 
-namespace BodyMetrica.Domain.Weight.Handlers;
+namespace BodyMetrica.Domain.Weight.Features.AddNewWeightLog;
 
 public class AddNewWeightLogRequestHandler(
     IWeightLogRepository weightLogRepository,
