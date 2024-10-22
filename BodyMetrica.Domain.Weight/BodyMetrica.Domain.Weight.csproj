@@ -26,6 +26,7 @@
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Aggregates\" />
+    <Folder Include="Features\GetUserProfile\" />
   </ItemGroup>
 
 </Project>

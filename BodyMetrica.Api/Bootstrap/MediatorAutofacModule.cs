@@ -31,6 +31,7 @@ public class MediatorAutofacModule : Module
         // register DI for mediatr types
         var mediatrOpenTypes = new[]
         {
+            typeof(IRequestHandler<>),
             typeof(IRequestHandler<,>),
             typeof(IRequestExceptionHandler<,,>),
             typeof(IRequestExceptionAction<,>),

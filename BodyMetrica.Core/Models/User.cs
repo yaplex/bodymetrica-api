@@ -1,8 +1,9 @@
-﻿namespace BodyMetrica.Domain.Common.Models;
+﻿namespace BodyMetrica.Core.Models;
 
 public class User
 {
     public int Id { get; set; }
     public string ExternalId { get; set; }
     public DateTimeOffset CreatedAt { get; set; }
+    public string WeightUnits { get; set; }
 }

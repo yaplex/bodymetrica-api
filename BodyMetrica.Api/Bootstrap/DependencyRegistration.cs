@@ -2,8 +2,8 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using BodyMetrica.Api.Controllers;
-using BodyMetrica.Contracts.Weight.Requests;
 using BodyMetrica.Domain.Common.Models;
+using BodyMetrica.Domain.Weight.Features.AddNewWeightLog;
 using BodyMetrica.Domain.Weight.Repositories;
 using BodyMetrica.Infrastructure.DataAccess;
 using BodyMetrica.Infrastructure.DataAccess.Migrations;

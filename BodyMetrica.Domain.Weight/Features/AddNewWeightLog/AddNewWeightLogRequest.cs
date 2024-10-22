@@ -2,7 +2,7 @@
 using FluentValidation;
 using MediatR;
 
-namespace BodyMetrica.Contracts.Weight.Requests;
+namespace BodyMetrica.Domain.Weight.Features.AddNewWeightLog;
 
 public class AddNewWeightLogRequest : IRequest<Result>
 {

@@ -1,6 +1,6 @@
-﻿using BodyMetrica.Contracts.Weight.Requests;
+﻿using BodyMetrica.Core.Models;
+using BodyMetrica.Core.Services;
 using BodyMetrica.Domain.Common.Models;
-using BodyMetrica.Domain.Common.Services;
 using BodyMetrica.Domain.Weight.Entities;
 using BodyMetrica.Domain.Weight.Features.AddNewWeightLog;
 using BodyMetrica.Domain.Weight.Repositories;

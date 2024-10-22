@@ -1,5 +1,4 @@
-﻿using BodyMetrica.Contracts.Weight.Requests;
-using BodyMetrica.Domain.Common.Services;
+﻿using BodyMetrica.Core.Services;
 using BodyMetrica.Domain.Weight.Entities;
 using BodyMetrica.Domain.Weight.Repositories;
 using FluentResults;
