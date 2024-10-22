@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BodyMetrica.UnitTests", "Bo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BodyMetrica.Domain.Weight", "BodyMetrica.Domain.Weight\BodyMetrica.Domain.Weight.csproj", "{27BCEE3D-77B7-489E-A3DC-1E8B55258756}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BodyMetrica.Domain.Common", "BodyMetrica.Domain.Common\BodyMetrica.Domain.Common.csproj", "{0F2E7B57-BE9E-445B-A6E6-53F687D49C21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BodyMetrica.Core", "BodyMetrica.Core\BodyMetrica.Core.csproj", "{0F2E7B57-BE9E-445B-A6E6-53F687D49C21}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{287ED193-E974-47A6-8E28-15F0940237C8}"
 EndProject

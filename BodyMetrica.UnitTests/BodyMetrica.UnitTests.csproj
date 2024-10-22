@@ -28,7 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BodyMetrica.Api\BodyMetrica.Api.csproj" />
-    <ProjectReference Include="..\BodyMetrica.Domain.Common\BodyMetrica.Domain.Common.csproj" />
     <ProjectReference Include="..\BodyMetrica.Domain.Weight\BodyMetrica.Domain.Weight.csproj" />
   </ItemGroup>
 
