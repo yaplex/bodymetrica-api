@@ -1,5 +1,5 @@
-﻿using BodyMetrica.Domain.Common.Models;
-using BodyMetrica.Domain.Common.Repositories;
+﻿using BodyMetrica.Core.Models;
+using BodyMetrica.Core.Repositories;
 
 namespace BodyMetrica.Infrastructure.DataAccess.Repositories;
 
@@ -12,7 +12,7 @@ public class UserRepository(BodyMetricaDbContext dbContext) : IUserRepository
         if (user == null)
         {
             // create and add to DB - this is first call for this user
-            var defaultUser = new User()
+            var defaultUser = new User
             {
                 ExternalId = externalIdentifer,
                 CreatedAt = DateTimeOffset.Now
@@ -23,5 +23,17 @@ public class UserRepository(BodyMetricaDbContext dbContext) : IUserRepository
         }
 
         return user;
+    }
+
+    public async Task<User> GetById(int id)
+    {
+        var user = await dbContext.ApplicationUsers.FindAsync(id);
+        return user;
+    }
+
+    public async Task Update(User user)
+    {
+        dbContext.ApplicationUsers.Update(user);
+        await dbContext.SaveChangesAsync();
     }
 }

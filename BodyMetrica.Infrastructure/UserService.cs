@@ -1,7 +1,8 @@
 ﻿using System.Security;
+using BodyMetrica.Core.Models;
+using BodyMetrica.Core.Repositories;
+using BodyMetrica.Core.Services;
 using BodyMetrica.Domain.Common.Models;
-using BodyMetrica.Domain.Common.Repositories;
-using BodyMetrica.Domain.Common.Services;
 using Microsoft.AspNetCore.Http;
 
 namespace BodyMetrica.Infrastructure;

@@ -1,6 +1,7 @@
 ﻿using Autofac;
+using BodyMetrica.Core.Repositories;
+using BodyMetrica.Core.Services;
 using BodyMetrica.Domain.Common.Repositories;
-using BodyMetrica.Domain.Common.Services;
 using BodyMetrica.Domain.Weight.Repositories;
 using BodyMetrica.Infrastructure;
 using BodyMetrica.Infrastructure.DataAccess.Repositories;

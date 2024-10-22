@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using BodyMetrica.Contracts.Weight.Dtos;
-using BodyMetrica.Contracts.Weight.Requests;
-using BodyMetrica.Domain.Common.Services;
+using BodyMetrica.Core.Services;
 using BodyMetrica.Domain.Weight.Repositories;
 using MediatR;
 

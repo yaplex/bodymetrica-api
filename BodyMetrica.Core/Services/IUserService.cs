@@ -1,6 +1,6 @@
-﻿using BodyMetrica.Domain.Common.Models;
+﻿using BodyMetrica.Core.Models;
 
-namespace BodyMetrica.Domain.Common.Services;
+namespace BodyMetrica.Core.Services;
 
 public interface IUserService
 {

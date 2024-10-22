@@ -1,7 +1,7 @@
 ﻿using BodyMetrica.Contracts.Weight.Dtos;
 using MediatR;
 
-namespace BodyMetrica.Contracts.Weight.Requests;
+namespace BodyMetrica.Domain.Weight.Features.GetRecentWeightLogs;
 
 public class GetWeightLogsQuery : IRequest<IEnumerable<WeightLogDto>>
 {
