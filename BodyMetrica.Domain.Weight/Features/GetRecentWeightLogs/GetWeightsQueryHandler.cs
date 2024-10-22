@@ -5,7 +5,7 @@ using BodyMetrica.Domain.Common.Services;
 using BodyMetrica.Domain.Weight.Repositories;
 using MediatR;
 
-namespace BodyMetrica.Domain.Weight.Handlers;
+namespace BodyMetrica.Domain.Weight.Features.GetRecentWeightLogs;
 
 public class GetWeightsQueryHandler(
     IWeightLogRepository weightLogRepository,

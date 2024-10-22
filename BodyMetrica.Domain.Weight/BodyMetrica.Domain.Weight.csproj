@@ -7,20 +7,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="FluentResults" Version="3.16.0" />
+    <PackageReference Include="FluentValidation" Version="11.10.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BodyMetrica.Contracts\BodyMetrica.Contracts.csproj" />
-    <ProjectReference Include="..\BodyMetrica.Domain.Common\BodyMetrica.Domain.Common.csproj" />
+    <ProjectReference Include="..\BodyMetrica.Core\BodyMetrica.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Aggregates\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

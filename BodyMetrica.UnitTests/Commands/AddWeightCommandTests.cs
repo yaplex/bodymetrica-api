@@ -2,7 +2,7 @@
 using BodyMetrica.Domain.Common.Models;
 using BodyMetrica.Domain.Common.Services;
 using BodyMetrica.Domain.Weight.Entities;
-using BodyMetrica.Domain.Weight.Handlers;
+using BodyMetrica.Domain.Weight.Features.AddNewWeightLog;
 using BodyMetrica.Domain.Weight.Repositories;
 using FluentResults;
 using Moq;
