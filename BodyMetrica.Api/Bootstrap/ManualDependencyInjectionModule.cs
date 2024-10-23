@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using BodyMetrica.Api.Services;
 using BodyMetrica.Core.Repositories;
 using BodyMetrica.Core.Services;
 using BodyMetrica.Domain.Common.Repositories;

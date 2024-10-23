@@ -9,7 +9,7 @@ public class UpdateWeightUnitsHandler(IUserService userService, IUserRepository 
 {
     public async Task Handle(UpdateWeightUnitsCommand command, CancellationToken cancellationToken)
     {
-        var user = userService.GetCurrentUser();
+        var user = await userService.GetCurrentUser();
         var userFromRepo = await userRepository.GetById(user.Id);
         userFromRepo.WeightUnits = command.WeightUnits;
         await userRepository.Update(userFromRepo);

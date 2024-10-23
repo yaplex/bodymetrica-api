@@ -4,5 +4,5 @@ namespace BodyMetrica.Core.Services;
 
 public interface IUserService
 {
-    User GetCurrentUser();
+    Task<User> GetCurrentUser();
 }

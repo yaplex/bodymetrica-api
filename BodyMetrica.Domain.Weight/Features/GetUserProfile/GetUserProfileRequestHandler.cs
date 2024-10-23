@@ -9,7 +9,7 @@ public class GetUserProfileRequestHandler(IUserService userService, IUserReposit
 {
     public async Task<UserProfileResponse> Handle(GetUserProfileRequest request, CancellationToken cancellationToken)
     {
-        var user = userService.GetCurrentUser();
+        var user = await userService.GetCurrentUser();
         var userFromRepo = await userRepository.GetById(user.Id);
         return mapper.Map<UserProfileResponse>(userFromRepo);
     }
