@@ -42,6 +42,7 @@ public static class DependencyRegistration
 
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddAutoMapper(assembliesToScan);
+        builder.Services.AddHttpClient();
     }
 
     private static void AddCorsForEndpoints(WebApplicationBuilder builder)
