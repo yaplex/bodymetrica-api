@@ -15,7 +15,7 @@ public class GetWeightsQueryHandler(
     public async Task<IEnumerable<WeightLogDto>> Handle(GetWeightLogsQuery request,
         CancellationToken cancellationToken)
     {
-        var user = userService.GetCurrentUser();
+        var user = await userService.GetCurrentUser();
         var weightLogs = await weightLogRepository.GetWeightLogs(user.Id, request.RecordsCount);
 
         return mapper.Map<IEnumerable<WeightLogDto>>(weightLogs);

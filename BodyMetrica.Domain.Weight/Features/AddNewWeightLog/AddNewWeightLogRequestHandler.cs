@@ -12,7 +12,7 @@ public class AddNewWeightLogRequestHandler(
 {
     public async Task<Result> Handle(AddNewWeightLogRequest request, CancellationToken cancellationToken)
     {
-        var user = userService.GetCurrentUser();
+        var user = await userService.GetCurrentUser();
         var weight = new WeightLog(request.Weight, request.RecordDate);
         weight.SetOwner(user.Id);
 

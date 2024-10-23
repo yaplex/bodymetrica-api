@@ -9,11 +9,24 @@ namespace BodyMetrica.Infrastructure;
 
 public class UserService(IUserRepository userRepo, IHttpContextAccessor contextAccessor) : IUserService
 {
-    public User GetCurrentUser()
+    public async Task<User> GetCurrentUser()
     {
         // todo: add caching
         var authInfo = GetAuthInfo();
-        var user = userRepo.FindByExternalId(authInfo.ExternalIdentifer);
+        var user = await userRepo.FindByExternalId(authInfo.ExternalIdentifer);
+
+        if (user == null)
+        {
+            // this is first time user logs in or created account, need to create a record on backend.
+            var defaultUser = new User
+            {
+                ExternalId = authInfo.ExternalIdentifer,
+                CreatedAt = DateTimeOffset.Now,
+                WeightUnits = "kg"
+            };
+            return await userRepo.Create(defaultUser);
+        }
+
         return user;
     }
 
