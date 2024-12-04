@@ -109,7 +109,7 @@ public static class DependencyRegistration
 
     private static void DatabaseDependencies(WebApplicationBuilder builder)
     {
-        var connectionString = Environment.GetEnvironmentVariable("SQLAZURECONNSTR_BodyMetrica");
+        var connectionString = builder.Configuration.GetConnectionString("BodyMetrica");
         builder.Services.AddSqlServer<BodyMetricaDbContext>(connectionString);
         builder.Services.AddFluentMigratorCore()
             .ConfigureRunner(rb => rb
