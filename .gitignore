@@ -396,4 +396,3 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-/BodyMetrica.Api/Properties/launchSettings.json
