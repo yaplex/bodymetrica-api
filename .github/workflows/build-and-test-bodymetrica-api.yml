@@ -4,9 +4,9 @@
 name: Build and Test BodyMetrica.Api
 
 on:
-  push:
-    branches:
-      - '*/*' # any feature branch e.g. alex/feature-1
+  push:      # run on any feature branch except 'main' branch
+    branches-ignore:
+      - main
   workflow_dispatch:
 
 jobs:
