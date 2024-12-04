@@ -5,12 +5,6 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BodyMetrica.Api", "BodyMetrica.Api\BodyMetrica.Api.csproj", "{426450A8-3F96-4440-B5E6-01207F988E85}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CICD", "CICD", "{E4630E7F-FA33-46BB-8862-D4F310842CBF}"
-	ProjectSection(SolutionItems) = preProject
-		.github\workflows\build_and_test_bodymetrica-api.yml = .github\workflows\build_and_test_bodymetrica-api.yml
-		.github\workflows\main_bodymetrica-api.yml = .github\workflows\main_bodymetrica-api.yml
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BodyMetrica.UnitTests", "BodyMetrica.UnitTests\BodyMetrica.UnitTests.csproj", "{3184521E-8008-47CD-B202-98CC804264D1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BodyMetrica.Domain.Weight", "BodyMetrica.Domain.Weight\BodyMetrica.Domain.Weight.csproj", "{27BCEE3D-77B7-489E-A3DC-1E8B55258756}"
