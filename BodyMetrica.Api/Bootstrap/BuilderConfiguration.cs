@@ -17,10 +17,17 @@ using Serilog;
 
 namespace BodyMetrica.Api.Bootstrap;
 
-public static class DependencyRegistration
+public static class BuilderConfiguration
 {
-    public static void RegisterDependencies(this WebApplicationBuilder builder)
+    public static void ConfigureWebBuilder(this WebApplicationBuilder builder)
     {
+        builder.Services.AddHealthChecks()
+            .AddCheck<HealthCheck>("BasicHealthCheck");
+
+        builder.Services.AddControllers();
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+
         var assembliesToScan = new List<Assembly>
         {
             typeof(WeightLogController).Assembly,
