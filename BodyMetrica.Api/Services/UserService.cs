@@ -54,7 +54,7 @@ public class UserService(IUserRepository userRepo, IHttpContextAccessor contextA
 
             http.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", token);
-            var auth0Info = await http.GetFromJsonAsync<Auth0LoginInfo>("https://bodymetrica.us.auth0.com/userinfo");
+            var auth0Info = await http.GetFromJsonAsync<Auth0LoginInfo>("https://auth.bodymetrica.com/userinfo");
             return auth0Info;
         }
         catch (Exception ex)

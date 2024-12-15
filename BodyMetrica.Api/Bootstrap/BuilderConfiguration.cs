@@ -71,7 +71,7 @@ public static class BuilderConfiguration
             options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
         }).AddJwtBearer(options =>
         {
-            options.Authority = "https://bodymetrica.us.auth0.com/";
+            options.Authority = "https://auth.bodymetrica.com";
             options.Audience = "https://api.bodymetrica.com";
             options.MapInboundClaims = false;
         });
