@@ -5,7 +5,7 @@ namespace BodyMetrica.Api.Bootstrap;
 
 public static class WebAppConfiguration
 {
-    public static void ConfigureWebApp(this WebApplication app)
+    public static void ConfigureWebApp(this WebApplication app )
     {
 
         app.MapHealthChecks("/healthcheck", new HealthCheckOptions()

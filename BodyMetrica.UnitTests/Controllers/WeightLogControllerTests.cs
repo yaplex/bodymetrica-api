@@ -1,5 +1,5 @@
 ﻿using BodyMetrica.Api.Controllers;
-using BodyMetrica.Domain.Weight.Features.AddNewWeightLog;
+using BodyMetrica.Features.Weight.AddNewWeightLog;
 using FluentResults;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

@@ -1,9 +1,6 @@
-﻿using Azure;
-using BodyMetrica.Contracts.Weight.Dtos;
-using BodyMetrica.Domain.Weight.Features.GetUserProfile;
-using BodyMetrica.Domain.Weight.Features.UpdateWeightUnits;
+﻿using BodyMetrica.Features.User.GetUserProfile;
+using BodyMetrica.Features.Weight.UpdateWeightUnits;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BodyMetrica.Api.Controllers;

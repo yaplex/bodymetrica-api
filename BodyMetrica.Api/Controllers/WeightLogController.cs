@@ -1,6 +1,5 @@
-using BodyMetrica.Contracts.Weight.Dtos;
-using BodyMetrica.Domain.Weight.Features.AddNewWeightLog;
-using BodyMetrica.Domain.Weight.Features.GetRecentWeightLogs;
+using BodyMetrica.Features.Weight.AddNewWeightLog;
+using BodyMetrica.Features.Weight.GetRecentWeightLogs;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,9 +21,9 @@ public class WeightLogController(IMediator mediator)
     }
 
     [HttpGet]
-    public async Task<IEnumerable<WeightLogDto>> Get()
+    public async Task<IEnumerable<RecentWeightLogDto>> Get()
     {
-        var query = new GetWeightLogsQuery(){RecordsCount = 7};
+        var query = new GetWeightLogsQuery { RecordsCount = 7 };
         var weightLogs = await mediator.Send(query);
         return weightLogs;
     }

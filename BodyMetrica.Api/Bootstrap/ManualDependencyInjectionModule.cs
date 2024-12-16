@@ -1,12 +1,5 @@
 ﻿using Autofac;
-using BodyMetrica.Api.Services;
-using BodyMetrica.Core.Repositories;
-using BodyMetrica.Core.Services;
-using BodyMetrica.Domain.Common.Repositories;
-using BodyMetrica.Domain.Weight.Repositories;
-using BodyMetrica.Infrastructure;
-using BodyMetrica.Infrastructure.DataAccess.Repositories;
-using BodyMetrica.Infrastructure.DataAccess.Weight;
+using BodyMetrica.Features.Common;
 using Module = Autofac.Module;
 
 namespace BodyMetrica.Api.Bootstrap;
@@ -17,17 +10,12 @@ public class ManualDependencyInjectionModule : Module
     {
         base.Load(builder);
         RegisterServices(builder);
-        RegisterRepositories(builder);
     }
 
     private static void RegisterServices(ContainerBuilder builder)
     {
         builder.RegisterType<UserService>().As<IUserService>();
+        builder.RegisterType<Auth0>().As<IAuth0>();
     }
 
-    private static void RegisterRepositories(ContainerBuilder builder)
-    {
-        builder.RegisterType<WeightLogRepository>().As<IWeightLogRepository>();
-        builder.RegisterType<UserRepository>().As<IUserRepository>();
-    }
 }
