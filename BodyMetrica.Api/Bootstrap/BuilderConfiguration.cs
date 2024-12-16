@@ -2,10 +2,8 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using BodyMetrica.Api.Controllers;
-using BodyMetrica.Domain.Common.Models;
-using BodyMetrica.Domain.Weight.Features.AddNewWeightLog;
-using BodyMetrica.Domain.Weight.Repositories;
-using BodyMetrica.Infrastructure.DataAccess;
+using BodyMetrica.Features.BloodPressure.AddNewBloodPressureLog;
+using BodyMetrica.Features.Persistence;
 using BodyMetrica.Infrastructure.DataAccess.Migrations;
 using FluentMigrator.Runner;
 using FluentValidation;
@@ -32,8 +30,8 @@ public static class BuilderConfiguration
         {
             typeof(WeightLogController).Assembly,
             typeof(BodyMetricaDbContext).Assembly,
-            typeof(IWeightLogRepository).Assembly,
-            typeof(ValueObject).Assembly
+            typeof(LogNewBloodPressureCommandValidator).Assembly,
+            typeof(IRecord).Assembly
         };
 
 
@@ -45,7 +43,7 @@ public static class BuilderConfiguration
         ConfigureAuth0(builder);
         AddCorsForEndpoints(builder);
 
-        AddFluentValidation(builder);
+        AddFluentValidation(builder, assembliesToScan);
 
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddAutoMapper(assembliesToScan);
@@ -89,11 +87,11 @@ public static class BuilderConfiguration
     }
 
 
-    private static void AddFluentValidation(WebApplicationBuilder builder)
+    private static void AddFluentValidation(WebApplicationBuilder builder, List<Assembly> assembliesToScan)
     {
         builder.Services.AddFluentValidationAutoValidation();
         builder.Services.AddFluentValidationClientsideAdapters();
-        builder.Services.AddValidatorsFromAssemblyContaining(typeof(AddNewLogWeightRequestValidator));
+        builder.Services.AddValidatorsFromAssemblies(assembliesToScan);
     }
 
     private static void LoggingDependencies(WebApplicationBuilder builder)
@@ -118,6 +116,7 @@ public static class BuilderConfiguration
     {
         var connectionString = builder.Configuration.GetConnectionString("BodyMetrica");
         builder.Services.AddSqlServer<BodyMetricaDbContext>(connectionString);
+        
         builder.Services.AddFluentMigratorCore()
             .ConfigureRunner(rb => rb
                 .AddSqlServer()
