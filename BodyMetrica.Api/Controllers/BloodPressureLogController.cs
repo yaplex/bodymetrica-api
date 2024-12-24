@@ -1,4 +1,6 @@
 using BodyMetrica.Features.BloodPressure.AddNewBloodPressureLog;
+using BodyMetrica.Features.BloodPressure.GetRecentBloodPressureLogs;
+using BodyMetrica.Features.Weight.GetRecentWeightLogs;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,5 +19,12 @@ public class BloodPressureLogController(IMediator mediator)
             return BadRequest(result.Errors);
 
         return Ok();
+    }
+
+    [HttpGet]
+    public async Task<IEnumerable<RecentBloodPressureLogDto>> Get()
+    {
+        var query = new GetRecentBloodPressureLogsQuery() { RecordsCount = 7 };
+        return await mediator.Send(query);
     }
 }
