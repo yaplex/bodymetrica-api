@@ -88,8 +88,6 @@ public static class BuilderConfiguration
 
     private static void AddFluentValidation(WebApplicationBuilder builder, List<Assembly> assembliesToScan)
     {
-        // builder.Services.AddFluentValidationAutoValidation();
-        // builder.Services.AddFluentValidationClientsideAdapters();
         builder.Services.AddValidatorsFromAssemblies(assembliesToScan);
     }
 
