@@ -7,7 +7,6 @@ using BodyMetrica.Features.Persistence;
 using BodyMetrica.Infrastructure.DataAccess.Migrations;
 using FluentMigrator.Runner;
 using FluentValidation;
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -89,8 +88,6 @@ public static class BuilderConfiguration
 
     private static void AddFluentValidation(WebApplicationBuilder builder, List<Assembly> assembliesToScan)
     {
-        builder.Services.AddFluentValidationAutoValidation();
-        builder.Services.AddFluentValidationClientsideAdapters();
         builder.Services.AddValidatorsFromAssemblies(assembliesToScan);
     }
 
