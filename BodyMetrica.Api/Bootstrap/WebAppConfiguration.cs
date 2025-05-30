@@ -13,11 +13,8 @@ public static class WebAppConfiguration
             ResponseWriter = HealthCheck.WriteResponse
         });
 
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+        app.UseSwagger();
+        app.UseSwaggerUI();
 
         app.UseCors();
         app.UseHttpsRedirection();
