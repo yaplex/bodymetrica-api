@@ -11,7 +11,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.9" />
 		<PackageReference Include="Autofac" Version="8.4.0" />
 		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
-		<PackageReference Include="AutoMapper" Version="[14.0.0,14.10]" />
+		<PackageReference Include="AutoMapper" Version="15.0.1" />
 		<PackageReference Include="Azure.Identity" Version="1.16.0" />
 		<PackageReference Include="FluentMigrator" Version="7.1.0" />
 		<PackageReference Include="FluentMigrator.Extensions.SqlServer" Version="7.1.0" />
